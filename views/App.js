@@ -16,6 +16,10 @@ class App extends React.Component {
     };
   }
 
+  static navigationOptions = {
+    header: null,
+  };
+
   async handleSubmit() {
     try {
       this.setState({

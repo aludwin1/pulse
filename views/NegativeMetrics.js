@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, Modal, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Button } from 'react-native-elements';
+import { ProgressCircle } from 'react-native-svg-charts';
 
 const Metrics = props => {
   return (
@@ -15,22 +15,15 @@ const Metrics = props => {
           flex: 1,
         }}
       >
+        <ProgressCircle
+          style={{ height: 200 }}
+          progress={Number(props.negativePercentage)}
+          progressColor={'rgb(237,67,55)'}
+        />
         <Text>
           {props.negativePercentage * 100}% N=
-          {props.negativeArticles}
+          {props.negativeNews}
         </Text>
-        <Text> Negative Coverage </Text>
-      </View>
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <Text>
-          {props.positivePercentage * 100}% N=
-          {props.positiveArticles}
-        </Text>
-        <Text> Positive Coverage </Text>
       </View>
     </View>
   );
@@ -38,10 +31,8 @@ const Metrics = props => {
 
 const mapStateToProps = state => {
   return {
-    positiveNews: state.positiveArticles,
     negativeNews: state.negativeArticles,
     negativePercentage: state.negativePercentage,
-    positivePercentage: state.positivePercentage,
   };
 };
 
