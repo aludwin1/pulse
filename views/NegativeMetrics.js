@@ -5,26 +5,32 @@ import { ProgressCircle } from 'react-native-svg-charts';
 
 const Metrics = props => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-      }}
-    >
-      <View
+    <View>
+      <ProgressCircle
+        style={{ height: 200 }}
+        progress={Number(props.negativePercentage)}
+        progressColor={'rgb(237,67,55)'}
+      />
+      <Text
         style={{
-          flex: 1,
+          alignSelf: 'center',
+          position: 'relative',
+          bottom: 123,
+          fontSize: 30,
         }}
       >
-        <ProgressCircle
-          style={{ height: 200 }}
-          progress={Number(props.negativePercentage)}
-          progressColor={'rgb(237,67,55)'}
-        />
-        <Text>
-          {props.negativePercentage * 100}% N=
-          {props.negativeNews}
-        </Text>
-      </View>
+        {props.negativePercentage * 100}%
+      </Text>
+      <Text
+        style={{
+          alignSelf: 'center',
+          position: 'relative',
+          bottom: 123,
+        }}
+      >
+        N=
+        {props.negativeNews}
+      </Text>
     </View>
   );
 };

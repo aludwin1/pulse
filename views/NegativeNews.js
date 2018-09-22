@@ -5,8 +5,7 @@ import { ListItem, Button } from 'react-native-elements';
 
 const NegativeNews = props => {
   return (
-    <View style={{ width: 300 }}>
-      <Text style={{ fontSize: 24 }}>Negative Coverage</Text>
+    <View style={{ width: 300, alignSelf: 'center' }}>
       {props.negativeNews.map((article, i) => (
         <ListItem
           key={i}

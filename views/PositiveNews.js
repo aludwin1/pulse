@@ -5,8 +5,7 @@ import { ListItem, Button } from 'react-native-elements';
 
 const PositiveNews = props => {
   return (
-    <View style={{ width: 300 }}>
-      <Text>Postive Coverage</Text>
+    <View style={{ width: 300, alignSelf: 'center' }}>
       {props.positiveNews.map((article, i) => (
         <ListItem
           key={i}

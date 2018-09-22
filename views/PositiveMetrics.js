@@ -20,8 +20,24 @@ const Metrics = props => {
           progress={Number(props.positivePercentage)}
           progressColor={'rgb(192,216,144)'}
         />
-        <Text>
-          {props.positivePercentage * 100}% N=
+        <Text
+          style={{
+            alignSelf: 'center',
+            position: 'relative',
+            bottom: 123,
+            fontSize: 30,
+          }}
+        >
+          {props.positivePercentage * 100}%
+        </Text>
+        <Text
+          style={{
+            alignSelf: 'center',
+            position: 'relative',
+            bottom: 123,
+          }}
+        >
+          N=
           {props.positiveNews}
         </Text>
       </View>

@@ -10,6 +10,7 @@ import {
   Icon,
   Text,
 } from 'native-base';
+import { View } from 'react-native';
 import PositiveMetrics from './PositiveMetrics';
 import NegativeMetrics from './NegativeMetrics';
 import NegativeNews from './NegativeNews';
@@ -31,8 +32,15 @@ class Dashboard extends React.Component {
               </TabHeading>
             }
           >
-            <PositiveMetrics />
-            <PositiveNews />
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+              }}
+            >
+              <PositiveMetrics />
+              <PositiveNews />
+            </View>
           </Tab>
           <Tab
             heading={
@@ -41,8 +49,15 @@ class Dashboard extends React.Component {
               </TabHeading>
             }
           >
-            <NegativeMetrics />
-            <NegativeNews />
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+              }}
+            >
+              <NegativeMetrics />
+              <NegativeNews />
+            </View>
           </Tab>
         </Tabs>
       </Container>
