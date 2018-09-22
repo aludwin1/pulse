@@ -1,14 +1,21 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
-import store from './store';
+import getStore from './store';
 import App from './views/App';
+import { AppLoading } from 'expo';
+import { PersistGate } from 'redux-persist/integration/react';
+import Dashboard from './views/Dashboard';
+
+let { store, persistor } = getStore();
 
 export default class AppWithStore extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <PersistGate loading={<AppLoading />} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     );
   }

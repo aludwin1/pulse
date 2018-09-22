@@ -12,17 +12,19 @@ const NegativeNews = props => {
           title={article.title}
           subtitle={article.source}
           chevron={false}
-          // onPress={() => {
-          //   Linking.canOpenURL(article.link)
-          //     .then(supported => {
-          //       if (!supported) {
-          //         console.log("Can't handle url: " + article.link);
-          //       } else {
-          //         return Linking.openURL(article.link);
-          //       }
-          //     })
-          //     .catch(err => console.error('An error occurred', err));
-          // }}
+          onPress={() => {
+            if (article.link.length > 1) {
+              Linking.canOpenURL(article.link)
+                .then(supported => {
+                  if (!supported) {
+                    console.log("Can't handle url: " + article.link);
+                  } else {
+                    return Linking.openURL(article.link);
+                  }
+                })
+                .catch(err => console.error('An error occurred', err));
+            }
+          }}
         />
       ))}
     </View>

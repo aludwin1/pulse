@@ -37,6 +37,9 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.props.top5NegativeStories.length) {
+      return <Dashboard />;
+    }
     return (
       <View
         style={{
@@ -90,6 +93,12 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => {
+  return {
+    top5NegativeStories: state.top5NegativeStories,
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
 export default createStackNavigator({
   Home: {
     screen: connect(
-      null,
+      mapStateToProps,
       mapDispatchToProps
     )(App),
   },
