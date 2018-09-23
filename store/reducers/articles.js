@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const SET_LOADING = 'LOADING';
 const POPULATE_ARTICLES = 'POPULATE_ARTICLES';
 const SET_ERROR = 'SET_ERROR';
 
@@ -11,7 +10,6 @@ const initialState = {
   negativePercentage: null,
   negativeArticles: null,
   positiveArticles: null,
-  isLoading: false,
   error: false,
 };
 
@@ -56,8 +54,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ERROR:
       return { ...state, error: action.err };
-    case SET_LOADING:
-      return { ...state, isLoading: !state.isLoading };
     case POPULATE_ARTICLES:
       return {
         ...state,

@@ -49,8 +49,8 @@ class Metrics extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    positiveNews: state.positiveArticles,
-    positivePercentage: state.positivePercentage,
+    positiveNews: state.articles.positiveArticles,
+    positivePercentage: state.articles.positivePercentage,
   };
 };
 

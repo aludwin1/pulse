@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { Content, Footer, FooterTab, Button, Icon } from 'native-base';
 import PositiveDashboard from './PositiveDashboard';
 import NegativeDashboard from './NegativeDashboard';
+import { fetchArticles } from '../store/reducers/articles';
+import { setCurrentPage } from '../store/reducers/user';
 import Loading from './Loading';
+import QueryHistory from './History';
 
 class Dashboard extends React.Component {
   state = {
@@ -15,17 +18,33 @@ class Dashboard extends React.Component {
     headerStyle: {
       backgroundColor: '#ffffff',
     },
-    headerTitle: <Icon name="md-ice-cream" style={{ color: '#ED4337' }} />,
+    headerTitle: <Icon name="ios-pulse" style={{ color: '#ED4337' }} />,
   };
 
   renderSelectedTab() {
-    switch (this.state.selectedTab) {
+    switch (this.props.currentPage) {
       case 'negative':
         return <NegativeDashboard />;
       case 'positive':
         return <PositiveDashboard />;
+      case 'history':
+        return <QueryHistory />;
       default:
         return <PositiveDashboard />;
+    }
+  }
+
+  async handleSubmit() {
+    try {
+      await this.setState({
+        loading: true,
+      });
+      await this.props.getData(this.state);
+      this.setState({
+        loading: false,
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -48,27 +67,48 @@ class Dashboard extends React.Component {
         <Footer>
           <FooterTab>
             <Button
-              active={this.state.selectedTab === 'positive'}
-              onPress={() => this.setState({ selectedTab: 'positive' })}
+              active={this.props.currentPage === 'positive'}
+              onPress={() => this.props.setCurrentPage('positive')}
             >
               Positive
               <Icon name="md-happy" />
             </Button>
             <Button
-              active={this.state.selectedTab === 'negative'}
-              onPress={() => this.setState({ selectedTab: 'negative' })}
+              active={this.props.currentPage === 'negative'}
+              onPress={() => this.props.setCurrentPage('negative')}
             >
               Negative
               <Icon name="md-sad" />
             </Button>
             <Button
-              active={this.state.selectedTab === 'search'}
+              active={this.props.currentPage === 'search'}
               onPress={() => {
                 this.props.navigation.navigate('Home');
               }}
             >
               Search
               <Icon name="ios-search" />
+            </Button>
+            <Button
+              onPress={async () => {
+                await this.setState({
+                  loading: true,
+                });
+                await this.props.getData(this.props.lastParams);
+                this.setState({
+                  loading: false,
+                });
+              }}
+            >
+              Search
+              <Icon name="md-refresh" />
+            </Button>
+            <Button
+              active={this.props.currentPage === 'history'}
+              onPress={() => this.props.setCurrentPage('history')}
+            >
+              Search
+              <Icon name="ios-book" />
             </Button>
           </FooterTab>
         </Footer>
@@ -77,10 +117,25 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    negativeNews: state.top5NegativeStories,
+    getData: async state => {
+      await dispatch(fetchArticles(state));
+    },
+    setCurrentPage: page => {
+      dispatch(setCurrentPage(page));
+    },
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapStateToProps = state => {
+  return {
+    lastParams: state.user.lastParams,
+    currentPage: state.user.currentPage,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

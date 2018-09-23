@@ -35,7 +35,7 @@ const PositiveNews = props => {
 
 const mapStateToProps = state => {
   return {
-    positiveNews: state.top5PositiveStories,
+    positiveNews: state.articles.top5PositiveStories,
   };
 };
 

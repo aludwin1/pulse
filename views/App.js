@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../store/reducers/articles';
+import { setLastParams, saveQuery } from '../store/reducers/user';
 import { FormInput, FormLabel, Button } from 'react-native-elements';
 import { Icon } from 'native-base';
 import Dashboard from './Dashboard';
 import { createStackNavigator } from 'react-navigation';
 import Loading from './Loading';
+import QueryHistory from './History';
 
 class App extends React.Component {
   constructor() {
@@ -24,14 +26,16 @@ class App extends React.Component {
 
   async handleSubmit() {
     try {
-      this.setState({
+      await this.setState({
         loading: true,
       });
       await this.props.getData(this.state);
+      this.props.setLast(this.state);
+      this.props.storeQuery(this.state);
       this.setState({
-        days: '',
-        company: '',
         loading: false,
+        company: '',
+        days: '',
       });
     } catch (err) {
       console.log(err);
@@ -54,7 +58,7 @@ class App extends React.Component {
       >
         <View style={{ paddingBottom: 25 }}>
           <Icon
-            name="md-ice-cream"
+            name="ios-pulse"
             style={{
               color: '#ED4337',
               fontSize: 80,
@@ -93,7 +97,8 @@ class App extends React.Component {
           }}
           backgroundColor="#3A3A4A"
         />
-        {this.props.top5NegativeStories.length > 0 ? (
+        {this.props.top5NegativeStories &&
+        this.props.top5NegativeStories.length > 0 ? (
           <Button
             style={{ paddingTop: 10 }}
             raised
@@ -114,24 +119,20 @@ const mapDispatchToProps = dispatch => {
     getData: async state => {
       await dispatch(fetchArticles(state));
     },
+    setLast: state => {
+      dispatch(setLastParams(state));
+    },
+    storeQuery: query => {
+      dispatch(saveQuery(query));
+    },
   };
 };
 
 const mapStateToProps = state => {
   return {
-    top5NegativeStories: state.top5NegativeStories,
+    top5NegativeStories: state.articles.top5NegativeStories,
   };
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 200,
-  },
-});
 
 export default createStackNavigator({
   Home: {
@@ -142,6 +143,9 @@ export default createStackNavigator({
   },
   Data: {
     screen: Dashboard,
+  },
+  History: {
+    screen: QueryHistory,
   },
 });
 

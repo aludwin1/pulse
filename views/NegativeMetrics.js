@@ -37,8 +37,8 @@ const Metrics = props => {
 
 const mapStateToProps = state => {
   return {
-    negativeNews: state.negativeArticles,
-    negativePercentage: state.negativePercentage,
+    negativeNews: state.articles.negativeArticles,
+    negativePercentage: state.articles.negativePercentage,
   };
 };
 
