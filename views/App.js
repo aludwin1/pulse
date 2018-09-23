@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../store/reducers/articles';
-import { FormInput, FormLabel, Button } from 'react-native-elements';
+import { FormInput, FormLabel, Button, Icon } from 'react-native-elements';
 import Dashboard from './Dashboard';
 import { createStackNavigator } from 'react-navigation';
 
@@ -37,9 +37,6 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.props.top5NegativeStories.length) {
-      return <Dashboard />;
-    }
     return (
       <View
         style={{
@@ -49,6 +46,14 @@ class App extends React.Component {
           flex: 1,
         }}
       >
+        <View style={{ paddingBottom: 25 }}>
+          <Icon
+            name="heartbeat"
+            type="font-awesome"
+            color="#ED4337"
+            size={80}
+          />
+        </View>
         <FormLabel>Company</FormLabel>
         <FormInput
           onChangeText={text => {
@@ -78,8 +83,20 @@ class App extends React.Component {
             await this.handleSubmit();
             this.props.navigation.navigate('Data');
           }}
+          backgroundColor="#3A3A4A"
           loading={this.state.loading}
         />
+        {this.props.top5NegativeStories.length > 0 ? (
+          <Button
+            style={{ paddingTop: 10 }}
+            raised
+            title="VIEW LAST PULSE"
+            onPressIn={async () => {
+              this.props.navigation.navigate('Data');
+            }}
+            backgroundColor="#ED4337"
+          />
+        ) : null}
       </View>
     );
   }
