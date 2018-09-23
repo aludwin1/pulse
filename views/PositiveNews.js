@@ -10,19 +10,23 @@ const PositiveNews = props => {
         <ListItem
           key={i}
           title={article.title}
-          subtitle={article.source}
-          chevron={false}
-          // onPress={() => {
-          //   Linking.canOpenURL(article.link)
-          //     .then(supported => {
-          //       if (!supported) {
-          //         console.log("Can't handle url: " + article.link);
-          //       } else {
-          //         return Linking.openURL(article.link);
-          //       }
-          //     })
-          //     .catch(err => console.error('An error occurred', err));
-          // }}
+          subtitle={
+            article.source + (article.link.length === 0 ? ' (No Link!)' : '')
+          }
+          hideChevron={true}
+          onPress={() => {
+            if (article.link.length > 1) {
+              Linking.canOpenURL(article.link)
+                .then(supported => {
+                  if (!supported) {
+                    console.log("Can't handle url: " + article.link);
+                  } else {
+                    return Linking.openURL(article.link);
+                  }
+                })
+                .catch(err => console.error('An error occurred', err));
+            }
+          }}
         />
       ))}
     </View>

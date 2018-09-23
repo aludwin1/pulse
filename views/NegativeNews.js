@@ -10,8 +10,10 @@ const NegativeNews = props => {
         <ListItem
           key={i}
           title={article.title}
-          subtitle={article.source}
-          chevron={false}
+          subtitle={
+            article.source + (article.link.length === 0 ? ' (No Link!)' : '')
+          }
+          hideChevron={true}
           onPress={() => {
             if (article.link.length > 1) {
               Linking.canOpenURL(article.link)
