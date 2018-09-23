@@ -3,47 +3,49 @@ import { View, StyleSheet, Text, Modal, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { ProgressCircle } from 'react-native-svg-charts';
 
-const Metrics = props => {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-      }}
-    >
+class Metrics extends React.Component {
+  render() {
+    return (
       <View
         style={{
-          flex: 1,
+          flexDirection: 'row',
         }}
       >
-        <ProgressCircle
-          style={{ height: 200 }}
-          progress={Number(props.positivePercentage)}
-          progressColor={'rgb(192,216,144)'}
-        />
-        <Text
+        <View
           style={{
-            alignSelf: 'center',
-            position: 'relative',
-            bottom: 123,
-            fontSize: 30,
+            flex: 1,
           }}
         >
-          {props.positivePercentage * 100}%
-        </Text>
-        <Text
-          style={{
-            alignSelf: 'center',
-            position: 'relative',
-            bottom: 123,
-          }}
-        >
-          N=
-          {props.positiveNews}
-        </Text>
+          <ProgressCircle
+            style={{ height: 200 }}
+            progress={Number(this.props.positivePercentage)}
+            progressColor={'rgb(192,216,144)'}
+          />
+          <Text
+            style={{
+              alignSelf: 'center',
+              position: 'relative',
+              bottom: 123,
+              fontSize: 30,
+            }}
+          >
+            {this.props.positivePercentage * 100}%
+          </Text>
+          <Text
+            style={{
+              alignSelf: 'center',
+              position: 'relative',
+              bottom: 123,
+            }}
+          >
+            N=
+            {this.props.positiveNews}
+          </Text>
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

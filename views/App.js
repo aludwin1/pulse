@@ -2,9 +2,11 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../store/reducers/articles';
-import { FormInput, FormLabel, Button, Icon } from 'react-native-elements';
+import { FormInput, FormLabel, Button } from 'react-native-elements';
+import { Icon } from 'native-base';
 import Dashboard from './Dashboard';
 import { createStackNavigator } from 'react-navigation';
+import Loading from './Loading';
 
 class App extends React.Component {
   constructor() {
@@ -37,6 +39,9 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <Loading />;
+    }
     return (
       <View
         style={{
@@ -44,14 +49,17 @@ class App extends React.Component {
           flexDirection: 'column',
           justifyContent: 'center',
           flex: 1,
+          backgroundColor: '#ffffff',
         }}
       >
         <View style={{ paddingBottom: 25 }}>
           <Icon
-            name="heartbeat"
-            type="font-awesome"
-            color="#ED4337"
-            size={80}
+            name="md-ice-cream"
+            style={{
+              color: '#ED4337',
+              fontSize: 80,
+              alignSelf: 'center',
+            }}
           />
         </View>
         <FormLabel>Company</FormLabel>
@@ -84,7 +92,6 @@ class App extends React.Component {
             this.props.navigation.navigate('Data');
           }}
           backgroundColor="#3A3A4A"
-          loading={this.state.loading}
         />
         {this.props.top5NegativeStories.length > 0 ? (
           <Button

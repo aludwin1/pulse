@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Content, Footer, FooterTab, Button, Icon } from 'native-base';
-import { View } from 'react-native';
-import PositiveMetrics from './PositiveMetrics';
-import NegativeMetrics from './NegativeMetrics';
 import PositiveDashboard from './PositiveDashboard';
 import NegativeDashboard from './NegativeDashboard';
-import Search from './App.js';
-import NegativeNews from './NegativeNews';
-import PositiveNews from './PositiveNews';
+import Loading from './Loading';
 
 class Dashboard extends React.Component {
   state = {
     selectedTab: 'positive',
+    loading: false,
   };
   static navigationOptions = {
-    header: null,
+    headerLeft: null,
+    headerStyle: {
+      backgroundColor: '#ffffff',
+    },
+    headerTitle: <Icon name="md-ice-cream" style={{ color: '#ED4337' }} />,
   };
 
   renderSelectedTab() {
@@ -30,12 +30,16 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <Loading />;
+    }
     return (
       <React.Fragment>
         <Content
-          style={{
-            position: 'relative',
-            top: 50,
+          contentContainerStyle={{
+            flex: 1,
+            justifyContent: 'center',
+            backgroundColor: '#ffffff',
           }}
         >
           {this.renderSelectedTab()}
