@@ -1,18 +1,11 @@
 import React from 'react';
-// import { View, StyleSheet, Modal, Linking } from 'react-native';
 import { connect } from 'react-redux';
-import {
-  Container,
-  Header,
-  Tab,
-  Tabs,
-  TabHeading,
-  Icon,
-  Text,
-} from 'native-base';
+import { Container, Header, Tab, Tabs, TabHeading, Text } from 'native-base';
 import { View } from 'react-native';
 import PositiveMetrics from './PositiveMetrics';
 import NegativeMetrics from './NegativeMetrics';
+import PositiveDashboard from './PositiveDashboard';
+import NegativeDashboard from './NegativeDashboard';
 import NegativeNews from './NegativeNews';
 import PositiveNews from './PositiveNews';
 
@@ -32,15 +25,7 @@ class Dashboard extends React.Component {
               </TabHeading>
             }
           >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-              }}
-            >
-              <PositiveMetrics />
-              <PositiveNews />
-            </View>
+            <PositiveDashboard />
           </Tab>
           <Tab
             heading={
@@ -49,24 +34,12 @@ class Dashboard extends React.Component {
               </TabHeading>
             }
           >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-              }}
-            >
-              <NegativeMetrics />
-              <NegativeNews />
-            </View>
+            <NegativeDashboard />
           </Tab>
         </Tabs>
       </Container>
     );
   }
-}
-
-{
-  /* <Metrics /> */
 }
 
 const mapStateToProps = state => {
