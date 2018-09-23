@@ -91,7 +91,7 @@ class App extends React.Component {
             style={{ paddingTop: 10 }}
             raised
             title="VIEW LAST PULSE"
-            onPressIn={async () => {
+            onPressIn={() => {
               this.props.navigation.navigate('Data');
             }}
             backgroundColor="#ED4337"
