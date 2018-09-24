@@ -29,7 +29,8 @@ class Metrics extends React.Component {
               fontSize: 30,
             }}
           >
-            {this.props.positivePercentage * 100}%
+            {Math.floor(this.props.positivePercentage * 100)}
+            %*
           </Text>
           <Text
             style={{

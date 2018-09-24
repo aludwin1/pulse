@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../store/reducers/articles';
 import { setLastParams, saveQuery } from '../store/reducers/user';
-import { FormInput, FormLabel, Button } from 'react-native-elements';
+import { FormInput, FormLabel, Button, Slider } from 'react-native-elements';
 import { Icon } from 'native-base';
 import Dashboard from './Dashboard';
 import { createStackNavigator } from 'react-navigation';
@@ -17,6 +17,7 @@ class App extends React.Component {
       days: '',
       company: '',
       loading: false,
+      disabled: true,
     };
   }
 
@@ -29,9 +30,18 @@ class App extends React.Component {
       await this.setState({
         loading: true,
       });
-      await this.props.getData(this.state);
-      this.props.setLast(this.state);
-      this.props.storeQuery(this.state);
+      await this.props.getData({
+        days: String(Math.floor(Number(this.state.days))),
+        company: this.state.company,
+      });
+      this.props.setLast({
+        days: String(Math.floor(Number(this.state.days))),
+        company: this.state.company,
+      });
+      this.props.storeQuery({
+        days: String(Math.floor(Number(this.state.days))),
+        company: this.state.company,
+      });
       this.setState({
         loading: false,
         company: '',
@@ -96,6 +106,11 @@ class App extends React.Component {
             this.props.navigation.navigate('Data');
           }}
           backgroundColor="#3A3A4A"
+          disabled={
+            isNaN(this.state.days) ||
+            Number(this.state.days) < 1 ||
+            this.state.company.split(' ').length > 1
+          }
         />
         {this.props.top5NegativeStories &&
         this.props.top5NegativeStories.length > 0 ? (

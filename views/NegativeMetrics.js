@@ -19,7 +19,8 @@ const Metrics = props => {
           fontSize: 30,
         }}
       >
-        {props.negativePercentage * 100}%
+        {Math.floor(props.negativePercentage * 100)}
+        %*
       </Text>
       <Text
         style={{

@@ -16,6 +16,14 @@ class QueryHistory extends React.Component {
     loading: false,
   };
 
+  static navigationOptions = {
+    headerLeft: null,
+    headerStyle: {
+      backgroundColor: '#ffffff',
+    },
+    headerTitle: <Text style={{ alignSelf: 'center' }}>Search History</Text>,
+  };
+
   render() {
     if (this.props.history && !this.props.history.length) {
       return (
@@ -28,6 +36,14 @@ class QueryHistory extends React.Component {
     }
     return (
       <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+        <ListItem
+          title="History"
+          titleStyle={{
+            fontWeight: 'bold',
+            alignSelf: 'center',
+          }}
+          hideChevron={true}
+        />
         {this.props.history.map((query, i) => (
           <ListItem
             rightIcon={{ name: 'close' }}

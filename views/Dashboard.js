@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Content, Footer, FooterTab, Button, Icon } from 'native-base';
+import { Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
 import PositiveDashboard from './PositiveDashboard';
 import NegativeDashboard from './NegativeDashboard';
 import { fetchArticles } from '../store/reducers/articles';
@@ -10,7 +10,6 @@ import QueryHistory from './History';
 
 class Dashboard extends React.Component {
   state = {
-    selectedTab: 'positive',
     loading: false,
   };
   static navigationOptions = {
