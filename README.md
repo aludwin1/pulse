@@ -3,7 +3,7 @@
 
 ## Description
 
-Pulse is an app that let's get a pulse on your brand or company. By simply typing
+Pulse is an app that allows you to get a pulse on your brand or company. By simply typing
 in your company's or brand's name, you will immediately be able to see how much news coverage
 about your brand is negative or positive. Additionally, you're able to see the top 5 stories
 for each sentiment category based on Linkedin shares.
