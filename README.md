@@ -3,10 +3,6 @@
 
 ## Description
 
-![Technology](images/Pulse_Home.jpg)
-![Positive](images/Pulse_Positive.jpg)
-![Negative](images/Pulse_History.jpg)
-
 Pulse is an app that let's get a pulse on your brand or company. By simply typing
 in your company's or brand's name, you will immediately be able to see how much news coverage
 about your brand is negative or positive. Additionally, you're able to see the top 5 stories
@@ -14,6 +10,10 @@ for each sentiment category based on Linkedin shares.
 
 If you have multiple brands that you would like to track, you can save multiple queries. State
 persists on local storage, and you can delete your history if necessary.
+
+![Home](images/Pulse_Home.jpg)
+![Positive](images/Pulse_Positive.jpg)
+![Negative](images/Pulse_History.jpg)
 
 ## Getting Started
 
