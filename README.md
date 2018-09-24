@@ -3,6 +3,10 @@
 
 ## Description
 
+![Technology](Pulse_Home.tiff)
+![Positive](Pulse_Positive.tiff)
+![Negative](Pulse_History.tiff)
+
 Pulse is an app that let's get a pulse on your brand or company. By simply typing
 in your company's or brand's name, you will immediately be able to see how much news coverage
 about your brand is negative or positive. Additionally, you're able to see the top 5 stories
@@ -34,6 +38,8 @@ persists on local storage, and you can delete your history if necessary.
 If you've searched on the app before, you'll notice that there is a button on the home screen under "GET PULSE" that says "VIEW LAST PULSE". If you tap that button, you will be taken to your last query, and also to the last page you were on (ex. if you on the history page when you closed the app, that's where you'll be when you click "VIEW LAST PULSE"). If you've been off of the app for more than a day, week, etc. you'll want to press the refresh button mentioned earlier to pull the latest data.
 
 ## Technology Used
+
+![Technology](Pulse_Architecture.tiff)
 
 - Front End is built with React-Native, React-Native-Elements, and NativeBase.
 - "Complex" state is managed by Redux and Redux state is persisted via Redux-Persist.
