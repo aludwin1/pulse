@@ -1,4 +1,5 @@
 # Pulse
+## Author: Aaron Ludwin
 
 ## Description
 
