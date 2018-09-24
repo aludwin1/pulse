@@ -3,9 +3,9 @@
 
 ## Description
 
-![Technology](images/Pulse_Home.jpeg)
-![Positive](images/Pulse_Positive.jpeg)
-![Negative](images/Pulse_History.jpeg)
+![Technology](images/Pulse_Home.jpg)
+![Positive](images/Pulse_Positive.jpg)
+![Negative](images/Pulse_History.jpg)
 
 Pulse is an app that let's get a pulse on your brand or company. By simply typing
 in your company's or brand's name, you will immediately be able to see how much news coverage
@@ -39,7 +39,7 @@ If you've searched on the app before, you'll notice that there is a button on th
 
 ## Technology Used
 
-![Technology](images/Pulse_Architecture.jpeg)
+![Technology](images/Pulse_Architecture.jpg)
 
 - Front End is built with React-Native, React-Native-Elements, and NativeBase.
 - "Complex" state is managed by Redux and Redux state is persisted via Redux-Persist.
