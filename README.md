@@ -42,4 +42,4 @@ If you've searched on the app before, you'll notice that there is a button on th
 
 ## Disclaimer
 
-This app relies on an API key that I have access to via a 14 day trial that started on 9/20/2018. Therefor, this app will no longer be functional after it's expiration.
+This app relies on an API key that I have access to via a 14 day trial that started on 9/20/2018. Therefore, this app will no longer be functional after it's expiration.
